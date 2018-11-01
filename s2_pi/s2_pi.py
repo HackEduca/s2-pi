@@ -77,6 +77,10 @@ class S2Pi(WebSocket):
         pi.stop()		
 	<------------------------<<<<<
         """
+        elif client_cmd == 'servo':
+            pin = int(payload['pin'])
+            self.pi.set_mode(pin, pigpio.OUTPUT)
+            value = int(payload['value'])
             DegreeMin = 0
             DegreeMax = 180
             PulseMin = 2500
