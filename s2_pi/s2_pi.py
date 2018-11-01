@@ -79,13 +79,14 @@ class S2Pi(WebSocket):
         pi.stop()		
 	<------------------------<<<<<
 	"""
-        elif client_cmd == 'servo':
-            pin = int(payload['pin'])
-            self.pi.set_mode(pin, pigpio.OUTPUT)
-            value = int(payload['value'])
-            angle = int(((181 / 18) * value) + 690) # map Pulse to Angle
-            self.pi.set_servo_pulsewidth(pin, angle)
-        #    time.sleep(0.01)
+        DegreeMin = 0
+        DegreeMax = 180
+        PulseMin = 690
+        PulseMax = 2500
+        Pulsewidth = int(((PulseMax - PulseMin)/(DegreeMax - DegreeMin))*(value + PulseMin))
+        #angle = int(((181 / 18) * value) + 690) # map Pulse to Angle
+        self.pi.set_servo_pulsewidth(pin, Pulsewidth)
+        #time.sleep(0.01)
             
         # when a user wishes to output a tone
         elif client_cmd == 'tone':
