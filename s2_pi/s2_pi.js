@@ -141,7 +141,7 @@
         }
     };
 
-     // when the Servo block is executed
+    // ***Hackeduca --> when the Servo block is executed
     ext.servo = function (pin, value) {
         if (connected == false) {
             alert("Servidor não conectado, digite s2pi no terminal");
