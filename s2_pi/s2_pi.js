@@ -61,7 +61,7 @@
             console.log(message.data)
         };
         window.socket.onclose = function (e) {
-            console.log("Connection closed.");
+            console.log("Conexão Encerrada");
             socket = null;
             connected = false;
             myStatus = 1;
@@ -86,7 +86,7 @@
     // when the connect to server block is executed
     ext.input = function (pin) {
         if (connected == false) {
-            alert("Server Not Connected");
+            alert("Servidor não conectado, digite s2pi no terminal");
         }
         // validate the pin number for the mode
         if (validatePin(pin)) {
@@ -100,7 +100,7 @@
     // when the digital write block is executed
     ext.digital_write = function (pin, state) {
         if (connected == false) {
-            alert("Server Not Connected");
+            alert("Servidor não conectado, digite s2pi no terminal");
         }
         console.log("digital write");
         // validate the pin number for the mode
@@ -116,19 +116,19 @@
     // when the PWM block is executed
     ext.analog_write = function (pin, value) {
         if (connected == false) {
-            alert("Server Not Connected");
+            alert("Servidor não conectado, digite s2pi no terminal");
         }
         console.log("analog write");
         // validate the pin number for the mode
         if (validatePin(pin)) {
             // validate value to be between 0 and 255
             if (value === 'VAL') {
-                alert("PWM Value must be in the range of 0 - 255");
+                alert("Os valores PWM devem estar entre 0 e 255");
             }
             else {
                 value = parseInt(value);
                 if (value < 0 || value > 255) {
-                    alert("PWM Value must be in the range of 0 - 255");
+                    alert("Os valores PWM devem estar entre 0 e 255");
                 }
                 else {
                     var msg = JSON.stringify({
@@ -141,10 +141,38 @@
         }
     };
 
+     // when the Servo block is executed
+    ext.servo = function (pin, value) {
+        if (connected == false) {
+            alert("Servidor não conectado, digite s2pi no terminal");
+        }
+        console.log("servo");
+        // validate the pin number for the mode
+        if (validatePin(pin)) {
+            // validate value to be between 0 and 180
+            if (value === 'VAL') {
+                alert("O ângulo do Servo motor deve ser entre 0 e 180");
+            }
+            else {
+                value = parseInt(value);
+                if (value < 0 || value > 180) {
+                    alert("O ângulo do Servo motor deve ser entre 0 e 180");
+                }
+                else {
+                    var msg = JSON.stringify({
+                        "command": 'servo', 'pin': pin, 'value': value
+                    });
+                    console.log(msg);
+                    window.socket.send(msg);
+                }
+            }
+        }
+    };
+ 
     // when the play tone block is executed
     ext.play_tone = function (pin, frequency) {
         if (connected == false) {
-            alert("Server Not Connected");
+            alert("Servidor não conectado, digite s2pi no terminal");
         }
         // validate the pin number for the mode
         if (validatePin(pin)) {
@@ -159,7 +187,7 @@
     // when the digital read reporter block is executed
     ext.digital_read = function (pin) {
         if (connected == false) {
-            alert("Server Not Connected");
+            alert("Servidor não conectado, digite s2pi no terminal");
         }
         else {
                 return digital_inputs[parseInt(pin)]
@@ -171,13 +199,13 @@
     function validatePin(pin) {
         var rValue = true;
         if (pin === 'PIN') {
-            alert("Insert a valid BCM pin number.");
+            alert("Escolha um pinos entre entre 0 e 31.");
             rValue = false;
         }
         else {
             var pinInt = parseInt(pin);
             if (pinInt < 0 || pinInt > 31) {
-                alert("BCM pin number must be in the range of 0-31.");
+                alert("Escolha um pinos entre entre 0 e 31.");
                 rValue = false;
             }
         }
@@ -188,22 +216,23 @@
     var descriptor = {
         blocks: [
             // Block type, block name, function name
-            ["w", 'Connect to s2_pi server.', 'cnct'],
-            [" ", 'Set BCM %n as an Input', 'input','PIN'],
-            [" ", "Set BCM %n Output to %m.high_low", "digital_write", "PIN", "0"],
-            [" ", "Set BCM PWM Out %n to %n", "analog_write", "PIN", "VAL"],
-            [" ", "Tone: BCM %n HZ: %n", "play_tone", "PIN", 1000],
-            ["r", "Read Digital Pin %n", "digital_read", "PIN"]
+            ["w", 'Conectar ao servidor', 'cnct'],
+            [" ", 'Define pino %n como entrada', 'input','PIN'],
+            [" ", "Define pino digital %n como saída e valor = %m.high_low", "digital_write", "PIN", "0"],
+            [" ", "Define pino PWM %n como saída e valor = %n (0 - 255)", "analog_write", "PIN", "VAL"],
+            [" ", "Define pino %n como servo motor e ângulo em %n (0 - 180)", "servo", "PIN", "VAL"],         
+            [" ", "Cria som no pino %n de %n Hz", "play_tone", "PIN", 1000],
+            ["r", "Ler pino digital %n", "digital_read", "PIN"]
 
         ],
         "menus": {
             "high_low": ["0", "1"]
 
         },
-        url: 'http://MrYsLab.github.io/s2-pi'
+        url: 'https://www.hackeduca.com.br/raspberrypi_scratch/'
     };
 
     // Register the extension
-    ScratchExtensions.register('s2_pi', descriptor, ext);
+    ScratchExtensions.register('s2_pi and hackeduca', descriptor, ext);
 })({});
 

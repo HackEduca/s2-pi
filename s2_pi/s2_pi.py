@@ -60,6 +60,17 @@ class S2Pi(WebSocket):
             self.pi.set_mode(pin, pigpio.OUTPUT)
             value = int(payload['value'])
             self.pi.set_PWM_dutycycle(pin, value)
+
+        # when a user wishes to set a servo level for a digital input pin
+        elif client_cmd == 'servo':
+            pin = int(payload['pin'])
+            self.pi.set_mode(pin, pigpio.OUTPUT)
+            value = int(payload['value'])
+            angle = int(((181 / 18) * value) + 690)            
+            self.pi.set_servo_pulsewidth(pin, angle)
+            time.sleep(0.01)
+            #self.pi.stop()
+            
         # when a user wishes to output a tone
         elif client_cmd == 'tone':
             pin = int(payload['pin'])
