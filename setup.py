@@ -8,7 +8,7 @@ call(["pip3", "install", "git+https://github.com/giampaolo/psutil.git"])
 user = os.listdir("/home")
 pth = '/home/' + user[0]
 
-call(["wget", "-P", pth, "https://raw.githubusercontent.com/sobreira/s2-pi/master/s2_pi/s2_pi.js"])
+call(["wget", "-P", pth, "https://raw.githubusercontent.com/HackEduca/s2-pi/master/s2_pi/s2_pi.js"])
 
 setup(
     name='s2-pi',
@@ -19,7 +19,7 @@ setup(
             'console_scripts': ['s2pi = s2_pi.s2_pi:run_server',
                                 'sbx_to_sb2 = s2_pi.sbx_to_sb2:sbx_to_sb2'],
         },
-    url='https://github.com/sobreira/s2-pi',
+    url='https://github.com/HackEduca/s2-pi',
     license='GNU General Public License v3 (GPLv3)',
     author='Alan Yorinks',
     author_email='MisterYsLab@gmail.com',
