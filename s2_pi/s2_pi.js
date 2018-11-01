@@ -1,10 +1,7 @@
 /**
- Copyright (c) 2016, 2017 Alan Yorinks All right reserved.
-
- Python Banyan is free software; you can redistribute it and/or
- modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
- Version 3 as published by the Free Software Foundation; either
- or (at your option) any later version.
+ This code was rewritten by Edson Sidnei Sobreira for HackEduca.
+ The main part was forked from MrYsLab/s2-pi by Alan Yorinks
+ 
  This library is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
