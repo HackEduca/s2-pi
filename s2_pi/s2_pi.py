@@ -3,12 +3,9 @@
 """
 s2_pi.py
 
- Copyright (c) 2016, 2017 Alan Yorinks All right reserved.
+ This code was rewritten by Edson Sidnei Sobreira for HackEduca.
+ The main part was forked from MrYsLab/s2-pi by Alan Yorinks
 
- Python Banyan is free software; you can redistribute it and/or
- modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
- Version 3 as published by the Free Software Foundation; either
- or (at your option) any later version.
  This library is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
@@ -27,7 +24,6 @@ import pigpio
 import psutil
 from subprocess import call
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-
 
 # This class inherits from WebSocket.
 # It receives messages from the Scratch and reports back for any digital input
@@ -61,17 +57,18 @@ class S2Pi(WebSocket):
             value = int(payload['value'])
             self.pi.set_PWM_dutycycle(pin, value)
 
-		"""	
-		HackEduca ---> when a user wishes to set a servo level for a digital input pin
-		Using SG90 servo:
-		180° = 2500 Pulses; 0° = 690 Pulses
-		map = (PulseHigh - PulseLow) / (180° - 0)
-		y - PulseLow = map(x - 0)
-		Where:
-		y = Wanted Pulse to be applied in the formula
-		X = Desired angle
- 		Test the following python code to know your Pulse Range: Replace it in the formula 
-		>>>>----------------------->
+	"""	
+	HackEduca ---> when a user wishes to set a servo level for a digital input pin
+	Using SG90 servo:
+	180° = 2500 Pulses; 0° = 690 Pulses
+	map = (PulseHigh - PulseLow) / (180° - 0)
+	y - PulseLow = map(x - 0)
+	Where:
+	y = Wanted Pulse to be applied in the formula
+	X = Desired angle
+ 	Test the following python code to know your Pulse Range: Replace it in the formula 
+	
+	>>>>----------------------->
         import RPi.GPIO as GPIO
         import pigpio
         #Pulse = 690 # 0°
@@ -80,15 +77,15 @@ class S2Pi(WebSocket):
         pi.set_mode(23, pigpio.OUTPUT)
         pi.set_servo_pulsewidth(23, Pulse)             
         pi.stop()		
-		<------------------------<<<<<
-		"""
+	<------------------------<<<<<
+	"""
         elif client_cmd == 'servo':
             pin = int(payload['pin'])
             self.pi.set_mode(pin, pigpio.OUTPUT)
             value = int(payload['value'])
             angle = int(((181 / 18) * value) + 690) # map Pulse to Angle
             self.pi.set_servo_pulsewidth(pin, angle)
-            time.sleep(0.01)
+        #    time.sleep(0.01)
             
         # when a user wishes to output a tone
         elif client_cmd == 'tone':
@@ -127,7 +124,6 @@ class S2Pi(WebSocket):
 
     def handleClose(self):
         print(self.address, 'closed')
-
 
 def run_server():
     # checking running processes.
