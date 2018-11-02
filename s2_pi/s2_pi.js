@@ -146,14 +146,14 @@
         console.log("servo");
         // validate the pin number for the mode
         if (validatePin(pin)) {
-            // validate value to be between 0 and 180
+            // validate value to be between 0° and 180°
             if (value === 'VAL') {
-                alert("O ângulo do Servo motor deve ser entre 0 e 180");
+                alert("O ângulo do Servo motor deve ser entre 0° e 180°");
             }
             else {
                 value = parseInt(value);
                 if (value < 0 || value > 180) {
-                    alert("O ângulo do Servo motor deve ser entre 0 e 180");
+                    alert("O ângulo do Servo motor deve ser entre 0° e 180°");
                 }
                 else {
                     var msg = JSON.stringify({
@@ -214,11 +214,14 @@
         blocks: [
             // Block type, block name, function name
             ["w", 'Conectar ao servidor', 'cnct'],
+            ["-"],
             [" ", 'Define pino %n como entrada', 'input','PIN'],
             [" ", "Define pino digital %n como saída e valor = %m.high_low", "digital_write", "PIN", "0"],
             [" ", "Define pino PWM %n como saída e valor = %n (0 - 255)", "analog_write", "PIN", "0"],
-            [" ", "Define pino %n como servo motor e ângulo em %n (0 - 180)", "servo", "PIN", "0"],         
+            ["-"],
+            [" ", "Define pino %n como servo motor e ângulo em %n (0° - 180°)", "servo", "PIN", "0"],         
             [" ", "Cria som no pino %n de %n Hz", "play_tone", "PIN", 1000],
+            ["-"],
             ["r", "Ler pino digital %n", "digital_read", "PIN"]
 
         ],
