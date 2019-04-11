@@ -12,7 +12,7 @@ call(["wget", "-P", pth, "https://raw.githubusercontent.com/HackEduca/s2-pi/mast
 
 setup(
     name='s2-pi',
-    version='1.9',
+    version='2.0',
     packages=['s2_pi'],
 
     entry_points={
