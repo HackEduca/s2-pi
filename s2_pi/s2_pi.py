@@ -6,10 +6,6 @@ s2_pi.py
  This code was rewritten by Edson Sidnei Sobreira for HackEduca.
  The main part was forked from MrYsLab/s2-pi by Alan Yorinks
 
-                                                               
-                                                                   
-                                                               
-                                       
  This library is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
