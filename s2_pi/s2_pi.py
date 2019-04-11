@@ -6,6 +6,10 @@ s2_pi.py
  This code was rewritten by Edson Sidnei Sobreira for HackEduca.
  The main part was forked from MrYsLab/s2-pi by Alan Yorinks
 
+                                                               
+                                                                   
+                                                               
+                                       
  This library is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
@@ -17,19 +21,23 @@ s2_pi.py
 
 """
 import json
+         
 import sys
 import time
 import os
+from subprocess import call
+
 import pigpio
 import psutil
-from subprocess import call
+
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+
 
 # This class inherits from WebSocket.
 # It receives messages from the Scratch and reports back for any digital input
 # changes.
 class S2Pi(WebSocket):
-   
+ 
     def handleMessage(self):
         # get command from Scratch2
         payload = json.loads(self.data)
@@ -79,12 +87,12 @@ class S2Pi(WebSocket):
             pin = int(payload['pin'])
             self.pi.set_mode(pin, pigpio.OUTPUT)
             value = int(payload['value'])
-            degree_min = 0
-            degree_max = 180
-            pulse_min = 2500
-            pulse_max = 690
-            pulse_width = int((((pulse_max - pulse_min) / (degree_max - degree_min)) * value) + pulse_min)
-            self.pi.set_servo_pulse_width(pin, pulse_width)
+            DegreeMin = 0
+            DegreeMax = 180
+            PulseMin = 2500
+            PulseMax = 690
+            Pulsewidth = int((((PulseMax - PulseMin) / (DegreeMax - DegreeMin)) * value) + PulseMin)
+            self.pi.set_servo_pulsewidth(pin, Pulsewidth)
             time.sleep(0.01)
             
         # when a user wishes to output a tone
@@ -125,6 +133,7 @@ class S2Pi(WebSocket):
     def handleClose(self):
         print(self.address, 'closed')
 
+
 def run_server():
     # checking running processes.
     # if the backplane is already running, just note that and move on.
@@ -152,5 +161,4 @@ if __name__ == "__main__":
         run_server()
     except KeyboardInterrupt:
         sys.exit(0)
-
 
