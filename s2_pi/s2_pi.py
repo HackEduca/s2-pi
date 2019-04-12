@@ -17,17 +17,13 @@ s2_pi.py
 
 """
 import json
-         
 import sys
 import time
 import os
 from subprocess import call
-
 import pigpio
 import psutil
-
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-
 
 # This class inherits from WebSocket.
 # It receives messages from the Scratch and reports back for any digital input
@@ -157,4 +153,3 @@ if __name__ == "__main__":
         run_server()
     except KeyboardInterrupt:
         sys.exit(0)
-
