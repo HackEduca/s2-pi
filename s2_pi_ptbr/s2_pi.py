@@ -143,7 +143,11 @@ def run_server():
         call(['sudo', 'pigpiod'])
         print('pigpiod has been started')
 
-    os.system('scratch2&')
+    dir = os.path.dirname(os.path.abspath(__file__))
+    os.system('scratch2 ' + dir +'/exemplo.sb2' )
+    #print ("hello")
+    #print (dir)    
+    #print (os.system ( os.path.abspath(__file__)))
     server = SimpleWebSocketServer('', 9000, S2Pi)
     server.serveforever()
 
