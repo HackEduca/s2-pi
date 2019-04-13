@@ -149,7 +149,7 @@ def run_server():
 
     #os.system('scratch2&')
     # dir = os.path.dirname(os.path.abspath(__file__))
-    os.system('scratch2& /home/pi/Documents/Scratch\ Projects/Exemplo_ptbr.sb2')
+    os.system('/usr/bin/scratch2 ' + dir +'/exemplo.sb2' )
     #print ("hello")
     #print (dir)    
     #print (os.system ( os.path.abspath(__file__)))
