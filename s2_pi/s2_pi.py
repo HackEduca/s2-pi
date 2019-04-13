@@ -112,7 +112,7 @@ class S2Pi(WebSocket):
         elif client_cmd == 'ready':
             pass
         else:
-            print("Unknown command received", client_cmd)
+            print("Comando recebido desconhecido", client_cmd)
 
     # call back from pigpio when a digital input value changed
     # send info back up to scratch
@@ -124,10 +124,10 @@ class S2Pi(WebSocket):
 
     def handleConnected(self):
         self.pi = pigpio.pi()
-        print(self.address, 'connected')
+        print(self.address, 'conectado')
 
     def handleClose(self):
-        print(self.address, 'closed')
+        print(self.address, 'encerrado')
 
 
 def run_server():
@@ -139,15 +139,21 @@ def run_server():
         p = psutil.Process(pid)
         if p.name() == "pigpiod":
             found_pigpio = True
-            print("pigpiod is running")
+            print("pigpiod está sendo executado")
         else:
             continue
 
     if not found_pigpio:
         call(['sudo', 'pigpiod'])
-        print('pigpiod has been started')
+        print('pigpiod foi iniciado')
 
-    os.system('scratch2&')
+    #os.system('scratch2&')
+    dir = os.path.dirname(os.path.abspath(__file__))
+    os.system('scratch2 ' + dir +'/exemplo.sb2' )
+    #print ("hello")
+    #print (dir)    
+    #print (os.system ( os.path.abspath(__file__)))
+    
     server = SimpleWebSocketServer('', 9000, S2Pi)
     server.serveforever()
 
