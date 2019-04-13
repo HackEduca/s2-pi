@@ -17,17 +17,13 @@ s2_pi.py
 
 """
 import json
-         
 import sys
 import time
 import os
 from subprocess import call
-
 import pigpio
 import psutil
-
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-
 
 # This class inherits from WebSocket.
 # It receives messages from the Scratch and reports back for any digital input
@@ -145,28 +141,9 @@ def run_server():
 
     if not found_pigpio:
         call(['sudo', 'pigpiod'])
-<<<<<<< HEAD:s2_pi/s2_pi.py
         print('pigpiod foi iniciado')
 
-    #os.system('scratch2&')
-    dir = os.path.dirname(os.path.abspath(__file__))
-    print(str(dir) +'/exemplo.sb2')
-    os.system('/usr/bin/scratch2' + str(dir) +'/exemplo.sb2')
-    
-    
-    #print ("hello")
-    #print (dir)    
-    #print (os.system ( os.path.abspath(__file__)))
-    
-=======
-        print('pigpiod has been started')
-
-    dir = os.path.dirname(os.path.abspath(__file__))
-    os.system('scratch2 ' + dir +'/exemplo.sb2' )
-    #print ("hello")
-    #print (dir)    
-    #print (os.system ( os.path.abspath(__file__)))
->>>>>>> parent of 8beabd4... Revert "Make system ready for more languages":s2_pi_ptbr/s2_pi.py
+    os.system('scratch2&')
     server = SimpleWebSocketServer('', 9000, S2Pi)
     server.serveforever()
 
