@@ -24,6 +24,7 @@ setup(
     author='Alan Yorinks',
     author_email='MisterYsLab@gmail.com',
     description='Creating Scratch 2 Extensions For The Raspberry Pi',
+    include_package_data=True,
     keywords=['Raspberry Pi', 'Scratch 2', 'Extensions'],
         classifiers=[
             'Development Status :: 5 - Production/Stable',
