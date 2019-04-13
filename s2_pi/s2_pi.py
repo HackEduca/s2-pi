@@ -149,7 +149,7 @@ def run_server():
 
     #os.system('scratch2&')
     # dir = os.path.dirname(os.path.abspath(__file__))
-    os.system('/usr/bin/scratch2 ')
+    os.system('/usr/bin/scratch2& ')
     print(str(dir) +'/exemplo.sb2')
     
     #print ("hello")
