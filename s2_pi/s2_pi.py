@@ -148,9 +148,10 @@ def run_server():
         print('pigpiod foi iniciado')
 
     #os.system('scratch2&')
-    # dir = os.path.dirname(os.path.abspath(__file__))
-    os.system('/usr/bin/scratch2& ')
+    dir = os.path.dirname(os.path.abspath(__file__))
     print(str(dir) +'/exemplo.sb2')
+    os.system('/usr/bin/scratch2' + str(dir) +'/exemplo.sb2')
+    
     
     #print ("hello")
     #print (dir)    
