@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 include s2_pi/*.sb2
+=======
+include s2_pi_ptbr/*.sb2
+>>>>>>> parent of 8beabd4... Revert "Make system ready for more languages"

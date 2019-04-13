@@ -145,6 +145,7 @@ def run_server():
 
     if not found_pigpio:
         call(['sudo', 'pigpiod'])
+<<<<<<< HEAD:s2_pi/s2_pi.py
         print('pigpiod foi iniciado')
 
     #os.system('scratch2&')
@@ -157,6 +158,15 @@ def run_server():
     #print (dir)    
     #print (os.system ( os.path.abspath(__file__)))
     
+=======
+        print('pigpiod has been started')
+
+    dir = os.path.dirname(os.path.abspath(__file__))
+    os.system('scratch2 ' + dir +'/exemplo.sb2' )
+    #print ("hello")
+    #print (dir)    
+    #print (os.system ( os.path.abspath(__file__)))
+>>>>>>> parent of 8beabd4... Revert "Make system ready for more languages":s2_pi_ptbr/s2_pi.py
     server = SimpleWebSocketServer('', 9000, S2Pi)
     server.serveforever()
 
