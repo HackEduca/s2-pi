@@ -11,9 +11,15 @@ pth = '/home/' + user[0]
 # call(["wget", "-P", pth, "https://raw.githubusercontent.com/HackEduca/s2-pi/master/s2_pi/s2_pi.js"])
 
 setup(
+<<<<<<< HEAD
     name='s2-pi_ptbr',
     version='2.0',
     packages=['s2_pi_ptbr'],
+=======
+    name='s2-pi',
+    version='1.9',
+    packages=['s2_pi'],
+>>>>>>> parent of 54ea900... Update setup.py
 
     entry_points={
             'console_scripts': ['s2pi_ptbr = s2_pi_ptbr.s2_pi:run_server',
